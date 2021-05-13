@@ -1,0 +1,16 @@
+﻿<Window x:Class="College_GeneratorAccounts.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:College_GeneratorAccounts"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Center" Height="414" Width="370"/>
+        <Button x:Name="btGenerateAccount" Content="Генерация" HorizontalAlignment="Left" Margin="429,10,0,0" VerticalAlignment="Top" Height="74" Width="313" Click="BtGenerateAccount_Click"/>
+        <Button x:Name="btImport" Content="Импорт" HorizontalAlignment="Left" Margin="429,102,0,0" VerticalAlignment="Top" Height="74" Width="313"/>
+        <Button x:Name="btExport" Content="Экспорт" HorizontalAlignment="Left" Margin="429,203,0,0" VerticalAlignment="Top" Height="74" Width="313"/>
+        <Button x:Name="btSaveToDb" Content="Сохранить в базу данных" HorizontalAlignment="Left" Margin="429,303,0,0" VerticalAlignment="Top" Height="74" Width="313"/>
+    </Grid>
+</Window>
