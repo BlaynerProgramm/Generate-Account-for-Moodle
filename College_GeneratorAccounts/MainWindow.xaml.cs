@@ -29,6 +29,12 @@ namespace College_GeneratorAccounts
 
         private void BtGenerateAccount_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
+
+        private void BtImport_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
