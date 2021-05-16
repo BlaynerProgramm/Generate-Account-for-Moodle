@@ -6,17 +6,19 @@ using System.Windows;
 
 namespace College_GeneratorAccounts
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
 	public partial class MainWindow : Window
 	{
+		/// <summary>
+		/// Исходные данные с именами
+		/// </summary>
 		private string[] data;
+		/// <summary>
+		/// Коллекция готовых аккаунтов
+		/// </summary>
 		private readonly List<Account> accounts = new();
-		public MainWindow()
-		{
-			InitializeComponent();
-		}
+
+		public MainWindow() => InitializeComponent();
+
 
 		private void BtGenerateAccount_Click(object sender, RoutedEventArgs e)
 		{
@@ -29,22 +31,44 @@ namespace College_GeneratorAccounts
 			{
 				tb.Text += account;
 			}
+
+			btExport.IsEnabled = true;
+			btSaveToDb.IsEnabled = true;
 		}
 
 		private void BtImport_Click(object sender, RoutedEventArgs e)
 		{
-			data = ImportData.GetData();
+			try
+			{
+				data = ImportData.GetData();
+			}
+			catch (FileNotFoundException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
 			for (int i = 0; i < data.Length; i++)
 			{
 				tb.Text += data[i];
 			}
+			btGenerateAccount.IsEnabled = true;
 		}
 
 		private void BtExport_Click(object sender, RoutedEventArgs e)
 		{
-			
-			MessageBox.Show("Ok");
+			try
+			{
+				ExportData.Export(accounts);
+				MessageBox.Show("Успешное сохранение", "Экспорт", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+			catch (System.ArgumentException ex)
+			{
+				MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+		}
+
+		private void BtSaveToDb_Click(object sender, RoutedEventArgs e)
+		{
+			MessageBox.Show("В разработке", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 	}
 }
-

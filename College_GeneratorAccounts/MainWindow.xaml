@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:College_GeneratorAccounts"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Генератор аккаунтов" Height="450" Width="800">
     <Grid>
         <TextBlock x:Name="tb" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="414" Width="370"/>
-        <Button x:Name="btGenerateAccount" Content="Генерация" HorizontalAlignment="Left" Margin="429,10,0,0" VerticalAlignment="Top" Height="74" Width="313" Click="BtGenerateAccount_Click"/>
+        <Button x:Name="btGenerateAccount" IsEnabled="False" Content="Генерация" HorizontalAlignment="Left" Margin="429,10,0,0" VerticalAlignment="Top" Height="74" Width="313" Click="BtGenerateAccount_Click"/>
         <Button x:Name="btImport" Content="Импорт" HorizontalAlignment="Left" Margin="429,102,0,0" VerticalAlignment="Top" Height="74" Width="313" Click="BtImport_Click"/>
-        <Button x:Name="btExport" Content="Экспорт" HorizontalAlignment="Left" Margin="429,203,0,0" VerticalAlignment="Top" Height="74" Width="313" Click="BtExport_Click"/>
-        <Button x:Name="btSaveToDb" Content="Сохранить в базу данных" HorizontalAlignment="Left" Margin="429,303,0,0" VerticalAlignment="Top" Height="74" Width="313"/>
+		<Button x:Name="btExport" Content="Экспорт" IsEnabled ="False" HorizontalAlignment="Left" Margin="429,203,0,0" VerticalAlignment="Top" Height="74" Width="313" Click="BtExport_Click"/>
+        <Button x:Name="btSaveToDb" Content="Сохранить в базу данных" IsEnabled ="False" HorizontalAlignment="Left" Margin="429,303,0,0" VerticalAlignment="Top" Height="74" Width="313" Click="BtSaveToDb_Click"/>
     </Grid>
 </Window>

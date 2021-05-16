@@ -4,19 +4,23 @@ using System.IO;
 
 namespace College_GeneratorAccounts.Model
 {
-    public static class ImportData
-    {
-        public static string[] GetData()
-        {
-            OpenFileDialog ofd = new();
-            ofd.ShowDialog();
-            string data = string.Empty;
-            using (StreamReader stream = new(ofd.FileName))
-            {
-                data = stream.ReadToEnd();
-            }
+	/// <summary>
+	/// Импорт данных
+	/// </summary>
+	public static class ImportData
+	{
+		public static string[] GetData()
+		{
+			OpenFileDialog ofd = new() { Title = "Выбрать файл данных" };
 
-            return data.Split(';');
-        }
-    }
+			if ((bool)ofd.ShowDialog())
+			{
+				using StreamReader stream = new(ofd.FileName);
+				string data = stream.ReadToEnd();
+
+				return data.Split(';');
+			}
+			throw new FileNotFoundException("Выберите файл");
+		}
+	}
 }
