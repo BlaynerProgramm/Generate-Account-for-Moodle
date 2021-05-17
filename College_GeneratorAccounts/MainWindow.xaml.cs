@@ -15,18 +15,19 @@ namespace College_GeneratorAccounts
 		/// <summary>
 		/// Коллекция готовых аккаунтов
 		/// </summary>
-		private readonly List<Account> accounts = new();
+		private List<Account> accounts;
 
 		public MainWindow() => InitializeComponent();
 
 
 		private void BtGenerateAccount_Click(object sender, RoutedEventArgs e)
 		{
+			accounts = new();
 			for (int i = 0; i < data.Length; i++)
 			{
 				accounts.Add(Account.GetnerateAccount(data[i]));
 			}
-			tb.Text = "";
+			tb.Text = string.Empty;
 			foreach (Account account in accounts)
 			{
 				tb.Text += account;
@@ -38,6 +39,7 @@ namespace College_GeneratorAccounts
 
 		private void BtImport_Click(object sender, RoutedEventArgs e)
 		{
+			tb.Text = string.Empty;
 			try
 			{
 				data = ImportData.GetData();
@@ -48,7 +50,7 @@ namespace College_GeneratorAccounts
 			}
 			for (int i = 0; i < data.Length; i++)
 			{
-				tb.Text += data[i];
+				tb.Text += $"{data[i]}\n";
 			}
 			btGenerateAccount.IsEnabled = true;
 		}
