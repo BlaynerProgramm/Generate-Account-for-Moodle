@@ -1,12 +1,14 @@
 ﻿using College_GeneratorAccounts.Model;
 
+using MahApps.Metro.Controls;
+
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
 namespace College_GeneratorAccounts
 {
-	public partial class MainWindow : Window
+	public partial class MainWindow : MetroWindow
 	{
 		/// <summary>
 		/// Исходные данные с именами
@@ -43,16 +45,16 @@ namespace College_GeneratorAccounts
 			try
 			{
 				data = ImportData.GetData();
+				for (int i = 0; i < data.Length; i++)
+				{
+					tb.Text += $"{data[i]}\n";
+				}
+				btGenerateAccount.IsEnabled = true;
 			}
 			catch (FileNotFoundException ex)
 			{
 				MessageBox.Show(ex.Message);
 			}
-			for (int i = 0; i < data.Length; i++)
-			{
-				tb.Text += $"{data[i]}\n";
-			}
-			btGenerateAccount.IsEnabled = true;
 		}
 
 		private void BtExport_Click(object sender, RoutedEventArgs e)
