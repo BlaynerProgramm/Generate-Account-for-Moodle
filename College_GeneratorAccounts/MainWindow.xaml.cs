@@ -2,6 +2,7 @@
 
 using MahApps.Metro.Controls;
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
@@ -52,6 +53,10 @@ namespace College_GeneratorAccounts
 				btGenerateAccount.IsEnabled = true;
 			}
 			catch (FileNotFoundException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
 			}

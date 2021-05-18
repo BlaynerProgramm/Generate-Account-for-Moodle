@@ -11,17 +11,22 @@ namespace College_GeneratorAccounts.Model
 	{
 		public static string[] GetData()
 		{
-			OpenFileDialog ofd = new() {
+			OpenFileDialog ofd = new() 
+			{
 				Filter = "csv(*.csv)|*.csv|xls(*.xls)|*.xls",
 				Title = "Выбрать файл данных" 
 			};
 
 			if ((bool)ofd.ShowDialog())
 			{
-				using StreamReader stream = new(ofd.FileName);
-				string data = stream.ReadToEnd();
+				if (ofd.FileName.EndsWith(".csv"))
+				{
+					using StreamReader stream = new(ofd.FileName);
+					string data = stream.ReadToEnd();
+					return data.Split(';');
+				}
 
-				return data.Split(';');
+				else throw new System.Exception("Этот тип файлов временно не поддерживается");
 			}
 			throw new FileNotFoundException("Выберите файл");
 		}
