@@ -11,7 +11,10 @@ namespace College_GeneratorAccounts.Model
 	{
 		public static string[] GetData()
 		{
-			OpenFileDialog ofd = new() { Title = "Выбрать файл данных" };
+			OpenFileDialog ofd = new() {
+				Filter = "csv(*.csv)|*.csv|xls(*.xls)|*.xls",
+				Title = "Выбрать файл данных" 
+			};
 
 			if ((bool)ofd.ShowDialog())
 			{
