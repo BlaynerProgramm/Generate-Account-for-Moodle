@@ -13,7 +13,7 @@ namespace College_GeneratorAccounts.Model
 		{
 			OpenFileDialog ofd = new() 
 			{
-				Filter = "csv(*.csv)|*.csv|xls(*.xls)|*.xls",
+				Filter = "csv(*.csv)|*.csv|xls(*.xls)|*.xls|xlsx(*.xlsx)|*.xlsx",
 				Title = "Выбрать файл данных" 
 			};
 

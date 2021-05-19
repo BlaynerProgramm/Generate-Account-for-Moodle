@@ -23,22 +23,38 @@ namespace College_GeneratorAccounts.Model
 			try
 			{
 				using StreamWriter stream = new(sfd.FileName);
-				foreach (Account account in data)
+
+				if (sfd.FileName.EndsWith(".csv"))
 				{
-					if (sfd.FileName.EndsWith(".csv"))
-					{
-						stream.Write(account.ToStringCsv());
-					}
-					else if (sfd.FileName.EndsWith(".xml"))
-					{
-						XmlSerializer formatter = new(typeof(Account));
-						formatter.Serialize(stream, account);
-					}
+					ExportCsv(data, stream);
+				}
+
+				else
+				{
+					ExportXml(data, stream);
 				}
 			}
 			catch (System.ArgumentException)
 			{
 				throw new System.ArgumentException("Путь не выбран");
+			}
+		}
+
+		private static void ExportXml(IEnumerable<Account> data, StreamWriter stream)
+		{
+			foreach (Account account in data)
+			{
+				XmlSerializer formatter = new(typeof(Account));
+				formatter.Serialize(stream, account);
+			}
+		}
+
+		private static void ExportCsv(IEnumerable<Account> data, StreamWriter stream)
+		{
+			stream.WriteLine("login;email;password;");
+			foreach (Account account in data)
+			{
+				stream.Write(account.ToStringCsv());
 			}
 		}
 	}
