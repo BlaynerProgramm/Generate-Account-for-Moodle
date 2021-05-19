@@ -102,7 +102,8 @@ namespace College_GeneratorAccounts.Model
 			   {
 				'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z', 'A', 'E', 'I', 'O', 'U', 'Y',
 				'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-				'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+				'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+				'!', '#', '$', '*'
 				};
 			Random random = new();
 			StringBuilder sb = new();
