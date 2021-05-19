@@ -45,7 +45,7 @@ namespace College_GeneratorAccounts
 			tb.Text = string.Empty;
 			try
 			{
-				data = ImportData.GetData();
+				data = ImportData.Import();
 				for (int i = 0; i < data.Length; i++)
 				{
 					tb.Text += $"{data[i]}\n";
@@ -53,10 +53,6 @@ namespace College_GeneratorAccounts
 				btGenerateAccount.IsEnabled = true;
 			}
 			catch (FileNotFoundException ex)
-			{
-				MessageBox.Show(ex.Message);
-			}
-			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
 			}
@@ -69,7 +65,7 @@ namespace College_GeneratorAccounts
 				ExportData.Export(accounts);
 				MessageBox.Show("Успешное сохранение", "Экспорт", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
-			catch (System.ArgumentException ex)
+			catch (ArgumentException ex)
 			{
 				MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
@@ -78,6 +74,11 @@ namespace College_GeneratorAccounts
 		private void BtSaveToDb_Click(object sender, RoutedEventArgs e)
 		{
 			MessageBox.Show("В разработке", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			MessageBox.Show("В разработке");
 		}
 	}
 }
