@@ -67,16 +67,23 @@ namespace College_GeneratorAccounts.Model
 			Application ObjExcel = new();
 			Workbook ObjWorkBook = ObjExcel.Workbooks.Open(path, 0, true, 5, "", "", false, XlPlatform.xlWindows, "", true, false, 0, true, false, false);
 			dynamic ObjWorkSheet = (Worksheet)ObjWorkBook.Sheets[1];
-			string[] data = new string[23];
+			var group = ObjWorkSheet.Cells[1, 1].Text.ToString();
+			if (group == "")
+			{
+				group = ObjWorkSheet.Cells[1, 2].Text.ToString(); //Погрешность
+			}
+			var numberOfPeople = ObjWorkSheet.Cells[3, 5].Text.ToString();
+			string[] data = new string[System.Convert.ToInt32(numberOfPeople)];
 
 			int row = 5;
-			for (int i = 0; i < 23; i++)
+			for (int i = 0; i < data.Length; i++)
 			{
 				int cloum = 4;
 				for (int j = 0; j < 3; j++)
 				{
 					data[i] += ObjWorkSheet.Cells[row, cloum++].Text.ToString() + " ";
 				}
+				data[i] += $"{group} ";
 				row++;
 			}
 			ObjExcel.Quit();
