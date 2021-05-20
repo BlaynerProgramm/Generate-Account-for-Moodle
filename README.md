@@ -17,7 +17,7 @@
 ## Лицензия
 Copyright © Kirill Abent
 
-Generate-Account-for-Moodle предоставляется по лицензии MIT. Дополнительные сведения см. в разделе ЛИЦЕНЗИЯ.
+Generate-Account-for-Moodle предоставляется по лицензии MIT. Дополнительные сведения см. в разделе [ЛИЦЕНЗИЯ.](https://github.com/BlaynerProgramm/Generate-Account-for-Moodle/blob/master/LICENSE)
 
 ### Доп. информация
 В проекте использовалась тема - [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
