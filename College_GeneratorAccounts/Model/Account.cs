@@ -30,9 +30,9 @@ namespace College_GeneratorAccounts.Model
 		/// <returns>Аккаунт</returns>
 		public static Account GetnerateAccount(string info)
 		{
-			var infoArray = info.Split();
-			string nameToLatin = Generator.GetCollectionTranslitToLatin(info);
-			return new Account(Generator.GenerateLogin(nameToLatin), Generator.GenerateEmails(nameToLatin), Generator.GeneratePassword(), infoArray[1],infoArray[0],infoArray[3]);
+			string[] infoArray = info.Split();
+			string nameToLatin = Generator.GetCollectionTranslitToLatin(info).Replace("  ", " ");
+			return new Account(Generator.GenerateLogin(nameToLatin), Generator.GenerateEmails(nameToLatin), Generator.GeneratePassword(), infoArray[1], infoArray[0], infoArray[3]);
 		}
 
 		/// <summary>
