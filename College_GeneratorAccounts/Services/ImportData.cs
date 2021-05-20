@@ -1,5 +1,4 @@
 ﻿using Microsoft.Office.Interop.Excel;
-using Microsoft.Win32;
 
 using System.IO;
 using System.Linq;
@@ -13,30 +12,21 @@ namespace College_GeneratorAccounts.Model
 	public static class ImportData
 	{
 		/// <summary>
-		/// Открывает окно диалога для выбора файла импорта
+		/// Выполнить импорт
 		/// </summary>
-		/// <returns>массив данных</returns>
-		public static string[] Import()
+		/// <param name="path">Полный путь к файлу данных</param>
+		/// <returns></returns>
+		public static string[] Import(string path)
 		{
-			OpenFileDialog ofd = new()
+			if (path.EndsWith(".csv"))
 			{
-				Filter = "csv(*.csv)|*.csv|xls(*.xls)|*.xls|xlsx(*.xlsx)|*.xlsx",
-				Title = "Выбрать файл данных"
-			};
-
-			if ((bool)ofd.ShowDialog())
-			{
-				if (ofd.FileName.EndsWith(".csv"))
-				{
-					return ImportCsv(ofd);
-				}
-
-				else
-				{
-					return ImportSheet(ofd.FileName);
-				}
+				return ImportCsv(path);
 			}
-			throw new FileNotFoundException("Выберите файл");
+
+			else
+			{
+				return ImportSheet(path);
+			}
 		}
 
 		/// <summary>
@@ -44,9 +34,9 @@ namespace College_GeneratorAccounts.Model
 		/// </summary>
 		/// <param name="ofd"></param>
 		/// <returns></returns>
-		private static string[] ImportCsv(OpenFileDialog ofd)
+		private static string[] ImportCsv(string path)
 		{
-			using StreamReader stream = new(ofd.FileName);
+			using StreamReader stream = new(path);
 			string data = stream.ReadToEnd();
 			return data.Split(';');
 		}
@@ -56,7 +46,7 @@ namespace College_GeneratorAccounts.Model
 		/// </summary>
 		/// <param name="path"></param>
 		/// <returns></returns>
-		public static string[] ImportSheet(string path)
+		private static string[] ImportSheet(string path)
 		{
 			Application ObjExcel = new();
 			Workbook ObjWorkBook = ObjExcel.Workbooks.Open(path, 0, true, 5, "", "", false, XlPlatform.xlWindows, "", true, false, 0, true, false, false);

@@ -2,9 +2,9 @@
 
 using MahApps.Metro.Controls;
 
-using System;
+using Microsoft.Win32;
+
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 
 namespace College_GeneratorAccounts
@@ -43,32 +43,38 @@ namespace College_GeneratorAccounts
 		private void BtImport_Click(object sender, RoutedEventArgs e)
 		{
 			tb.Text = string.Empty;
-			try
+			OpenFileDialog ofd = new()
 			{
-				data = ImportData.Import();
+				Filter = "csv(*.csv)|*.csv|xls(*.xls)|*.xls|xlsx(*.xlsx)|*.xlsx",
+				Title = "Выбрать файл данных"
+			};
+
+			if (ofd.ShowDialog().Value)
+			{
+				data = ImportData.Import(ofd.FileName);
 				for (int i = 0; i < data.Length; i++)
 				{
 					tb.Text += $"{data[i]}\n";
 				}
+
 				btGenerateAccount.IsEnabled = true;
 			}
-			catch (FileNotFoundException ex)
-			{
-				MessageBox.Show(ex.Message);
-			}
+			else return;
 		}
 
 		private void BtExport_Click(object sender, RoutedEventArgs e)
 		{
-			try
+			SaveFileDialog sfd = new()
 			{
-				ExportData.Export(accounts);
+				Filter = "csv(*.csv)|*.csv|xml(*.xml)|*.xml",
+				Title = "Экспорт данных аккаунтов"
+			};
+			if (sfd.ShowDialog().Value)
+			{
+				ExportData.Export(accounts, sfd.FileName);
 				MessageBox.Show("Успешное сохранение", "Экспорт", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
-			catch (ArgumentException ex)
-			{
-				MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-			}
+			else return;
 		}
 
 		private void BtSaveToDb_Click(object sender, RoutedEventArgs e)
@@ -78,7 +84,7 @@ namespace College_GeneratorAccounts
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBox.Show("В разработке");
+			MessageBox.Show("В разработке", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 	}
 }
