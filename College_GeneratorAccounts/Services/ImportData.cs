@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -45,9 +46,9 @@ namespace College_GeneratorAccounts.Model
 				List<string> dataList = data.Split('\n').ToList();
 				dataList.RemoveRange(0, 1);
 
-				for(int i = 0; i < dataList.Count; i++)
+				for (int i = 0; i < dataList.Count; i++)
 				{
-					dataList[i] = dataList[i].Replace(';',' ');
+					dataList[i] = dataList[i].Replace(';', ' ');
 				}
 				return dataList.ToArray();
 			}
@@ -62,7 +63,7 @@ namespace College_GeneratorAccounts.Model
 		/// </summary>
 		/// <param name="path"></param>
 		/// <returns></returns>
-		private static string[] ImportSheet(string path)
+		private static string[] ImportSheet(string path, int numPage = 1)
 		{
 			Application ObjExcel = new();
 			Workbook ObjWorkBook = ObjExcel.Workbooks.Open(path, 0, true, 5, "", "", false, XlPlatform.xlWindows, "", true, false, 0, true, false, false);
@@ -81,11 +82,12 @@ namespace College_GeneratorAccounts.Model
 				int cloum = 4;
 				for (int j = 0; j < 3; j++)
 				{
-					data[i] += ObjWorkSheet.Cells[row, cloum++].Text.ToString() + " ";
+					data[i] += $"{ObjWorkSheet.Cells[row, cloum++].Text} ";
 				}
 				data[i] += $"{group} ";
 				row++;
 			}
+
 			ObjExcel.Quit();
 			Marshal.ReleaseComObject(ObjWorkBook);
 			Marshal.ReleaseComObject(ObjWorkSheet);

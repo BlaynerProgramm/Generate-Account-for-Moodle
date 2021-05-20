@@ -66,7 +66,10 @@ namespace College_GeneratorAccounts
 
 				btGenerateAccount.IsEnabled = true;
 			}
-			else return;
+			else
+			{
+				return;
+			}
 		}
 
 		private void BtExport_Click(object sender, RoutedEventArgs e)
@@ -81,7 +84,10 @@ namespace College_GeneratorAccounts
 				ExportData.Export(accounts, sfd.FileName);
 				MessageBox.Show("Успешное сохранение", "Экспорт", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
-			else return;
+			else
+			{
+				return;
+			}
 		}
 
 		private void BtSaveToDb_Click(object sender, RoutedEventArgs e)
