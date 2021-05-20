@@ -16,7 +16,7 @@ namespace College_GeneratorAccounts.Model
 		/// <param name="path">Полный путь для экспорта</param>
 		public static void Export(IEnumerable<Account> data, string path)
 		{
-			using StreamWriter stream = new(path);
+			using StreamWriter stream = new(path, true, System.Text.Encoding.UTF8);
 
 			if (path.EndsWith(".csv"))
 			{

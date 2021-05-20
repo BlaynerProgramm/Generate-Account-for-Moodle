@@ -27,7 +27,7 @@ namespace College_GeneratorAccounts.Model
 
 			else
 			{
-				return ImportSheet(path);
+				return ImportSheet(path,out _);
 			}
 		}
 
@@ -40,7 +40,7 @@ namespace College_GeneratorAccounts.Model
 		{
 			try
 			{
-				using StreamReader stream = new(path);
+				using StreamReader stream = new(path, System.Text.Encoding.UTF8);
 				string data = stream.ReadToEnd();
 
 				List<string> dataList = data.Split('\n').ToList();
@@ -63,18 +63,19 @@ namespace College_GeneratorAccounts.Model
 		/// </summary>
 		/// <param name="path"></param>
 		/// <returns></returns>
-		private static string[] ImportSheet(string path, int numPage = 1)
+		public static string[] ImportSheet(string path, out int cellsCount, int numPage = 1)
 		{
 			Application ObjExcel = new();
 			Workbook ObjWorkBook = ObjExcel.Workbooks.Open(path, 0, true, 5, "", "", false, XlPlatform.xlWindows, "", true, false, 0, true, false, false);
-			dynamic ObjWorkSheet = (Worksheet)ObjWorkBook.Sheets[1];
+			dynamic ObjWorkSheet = (Worksheet)ObjWorkBook.Sheets[numPage];
 			var group = ObjWorkSheet.Cells[1, 1].Text.ToString();
+			cellsCount = ObjWorkBook.Sheets.Count;
 			if (group == "")
 			{
 				group = ObjWorkSheet.Cells[1, 2].Text.ToString(); //Погрешность
 			}
 			var numberOfPeople = ObjWorkSheet.Cells[3, 5].Text.ToString();
-			string[] data = new string[System.Convert.ToInt32(numberOfPeople)];
+			string[] data = new string[Convert.ToInt32(numberOfPeople)];
 
 			int row = 5;
 			for (int i = 0; i < data.Length; i++)

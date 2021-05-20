@@ -18,14 +18,45 @@ namespace College_GeneratorAccounts
 		/// <summary>
 		/// Коллекция готовых аккаунтов
 		/// </summary>
-		private List<Account> accounts;
+		private List<Account> accounts = new();
+		/// <summary>
+		/// Сохраненный путь для перелистывания страниц
+		/// </summary>
+		private string path;
+		/// <summary>
+		/// Счётчик страниц
+		/// </summary>
+		private int i = 1;
 
-		public MainWindow() => InitializeComponent();
+		delegate void Operation(int page);
+		event Operation TurnThePage;
 
+		public MainWindow()
+		{
+			InitializeComponent();
+			TurnThePage += TurnPage;
+		}
+
+		private void TurnPage(int i)
+		{
+			try
+			{
+				data = ImportData.ImportSheet(path, out int count, i);
+				tb.Text = string.Empty;
+				for (int j = 0; j < data.Length; j++)
+				{
+					tb.Text += $"{data[j]}\n";
+				}
+				lbPages.Content = $"{i} из {count}";
+			}
+			catch (System.Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
 
 		private void BtGenerateAccount_Click(object sender, RoutedEventArgs e)
 		{
-			accounts = new();
 			for (int i = 0; i < data.Length; i++)
 			{
 				accounts.Add(Account.GetnerateAccount(data[i]));
@@ -51,6 +82,7 @@ namespace College_GeneratorAccounts
 
 			if (ofd.ShowDialog().Value)
 			{
+				path = ofd.FileName;
 				try
 				{
 					data = ImportData.Import(ofd.FileName);
@@ -83,6 +115,7 @@ namespace College_GeneratorAccounts
 			{
 				ExportData.Export(accounts, sfd.FileName);
 				MessageBox.Show("Успешное сохранение", "Экспорт", MessageBoxButton.OK, MessageBoxImage.Information);
+				accounts.Clear();
 			}
 			else
 			{
@@ -99,5 +132,9 @@ namespace College_GeneratorAccounts
 		{
 			MessageBox.Show("В разработке", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
+
+		private void BtBack_Click(object sender, RoutedEventArgs e) => TurnThePage?.Invoke(--i);
+
+		private void BtNext_Click(object sender, RoutedEventArgs e) => TurnThePage?.Invoke(++i);
 	}
 }
