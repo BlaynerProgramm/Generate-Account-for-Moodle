@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
 
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -36,9 +37,24 @@ namespace College_GeneratorAccounts.Model
 		/// <returns></returns>
 		private static string[] ImportCsv(string path)
 		{
-			using StreamReader stream = new(path);
-			string data = stream.ReadToEnd();
-			return data.Split(';');
+			try
+			{
+				using StreamReader stream = new(path);
+				string data = stream.ReadToEnd();
+
+				List<string> dataList = data.Split('\n').ToList();
+				dataList.RemoveRange(0, 1);
+
+				for(int i = 0; i < dataList.Count; i++)
+				{
+					dataList[i] = dataList[i].Replace(';',' ');
+				}
+				return dataList.ToArray();
+			}
+			catch (IOException)
+			{
+				throw new IOException("Файл уже занят каким-то процессом");
+			}
 		}
 
 		/// <summary>

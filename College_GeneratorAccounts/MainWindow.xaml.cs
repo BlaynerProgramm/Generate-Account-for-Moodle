@@ -51,7 +51,14 @@ namespace College_GeneratorAccounts
 
 			if (ofd.ShowDialog().Value)
 			{
-				data = ImportData.Import(ofd.FileName);
+				try
+				{
+					data = ImportData.Import(ofd.FileName);
+				}
+				catch (System.IO.IOException ex)
+				{
+					MessageBox.Show(ex.Message);
+				}
 				for (int i = 0; i < data.Length; i++)
 				{
 					tb.Text += $"{data[i]}\n";
