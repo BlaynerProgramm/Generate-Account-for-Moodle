@@ -14,4 +14,10 @@
 - Экспорт во внешний файл (csv, xml);
 - Сохранение в БД.
 
+## Лицензия
+Copyright © Kirill Abent
+
+Generate-Account-for-Moodle предоставляется по лицензии MIT. Дополнительные сведения см. в разделе ЛИЦЕНЗИЯ.
+
+### Доп. информация
 В проекте использовалась тема - [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
