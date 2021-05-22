@@ -11,6 +11,7 @@ namespace College_GeneratorAccounts
 {
 	public partial class MainWindow : MetroWindow
 	{
+		#region Общие переменные
 		/// <summary>
 		/// Исходные данные с именами
 		/// </summary>
@@ -18,7 +19,7 @@ namespace College_GeneratorAccounts
 		/// <summary>
 		/// Коллекция готовых аккаунтов
 		/// </summary>
-		private List<Account> accounts = new();
+		private readonly List<Account> accounts = new();
 		/// <summary>
 		/// Сохраненный путь для перелистывания страниц
 		/// </summary>
@@ -28,8 +29,13 @@ namespace College_GeneratorAccounts
 		/// </summary>
 		private int i = 1;
 
-		delegate void Operation(int page);
-		event Operation TurnThePage;
+		private delegate void Operation(int page);
+
+		/// <summary>
+		///  Событие перелистования страниц в таблице
+		/// </summary>
+		private event Operation TurnThePage;
+		#endregion
 
 		public MainWindow()
 		{
@@ -49,7 +55,7 @@ namespace College_GeneratorAccounts
 				}
 				lbPages.Content = $"{i} из {count}";
 			}
-			catch (System.Exception ex)
+			catch (System.Runtime.InteropServices.COMException ex)
 			{
 				MessageBox.Show(ex.Message);
 			}

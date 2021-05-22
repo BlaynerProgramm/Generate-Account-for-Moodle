@@ -4,10 +4,24 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <StartupObject>College_GeneratorAccounts.App</StartupObject>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <Authors>Abent Kirill</Authors>
+    <Company>-</Company>
+    <Product>Generator Accounts for Moodle</Product>
+    <Copyright>Abent Kirill</Copyright>
+    <PackageLicenseFile>LICENSING.txt</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/BlaynerProgramm/Generate-Account-for-Moodle</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <AssemblyName>Generator Accounts</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="icon.png" />
+    <None Include="..\..\..\..\..\Desktop\LICENSING.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
