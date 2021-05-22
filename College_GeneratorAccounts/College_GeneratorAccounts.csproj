@@ -14,6 +14,7 @@
     <RepositoryUrl>https://github.com/BlaynerProgramm/Generate-Account-for-Moodle</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <AssemblyName>Generator Accounts</AssemblyName>
+    <NeutralLanguage>ru</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
