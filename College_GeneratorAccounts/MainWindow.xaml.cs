@@ -63,18 +63,25 @@ namespace College_GeneratorAccounts
 
 		private void BtGenerateAccount_Click(object sender, RoutedEventArgs e)
 		{
-			for (int i = 0; i < data.Length; i++)
+			try
 			{
-				accounts.Add(Account.GetnerateAccount(data[i]));
-			}
-			tb.Text = string.Empty;
-			foreach (Account account in accounts)
-			{
-				tb.Text += account;
-			}
+				for (int i = 0; i < data.Length; i++)
+				{
+					accounts.Add(Account.GetnerateAccount(data[i]));
+				}
+				tb.Text = string.Empty;
+				foreach (Account account in accounts)
+				{
+					tb.Text += account;
+				}
 
-			btExport.IsEnabled = true;
-			btSaveToDb.IsEnabled = true;
+				btExport.IsEnabled = true;
+				btSaveToDb.IsEnabled = true;
+			}
+			catch (System.IndexOutOfRangeException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
 		}
 
 		private async void BtImport_Click(object sender, RoutedEventArgs e)

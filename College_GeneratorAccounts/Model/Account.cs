@@ -30,9 +30,17 @@ namespace College_GeneratorAccounts.Services
 		/// <returns>Аккаунт</returns>
 		public static Account GetnerateAccount(string info)
 		{
+
 			string[] infoArray = info.Replace("  ", " ").Split();
 			string nameToLatin = Generator.GetCollectionTranslitToLatin(info).Replace("  ", " ");
-			return new Account(Generator.GenerateLogin(nameToLatin), Generator.GenerateEmails(nameToLatin), Generator.GeneratePassword(), infoArray[1], infoArray[0], infoArray[3]);
+			try
+			{
+				return new Account(Generator.GenerateLogin(nameToLatin), Generator.GenerateEmails(nameToLatin), Generator.GeneratePassword(), infoArray[1], infoArray[0], infoArray[3]);
+			}
+			catch (IndexOutOfRangeException ex)
+			{
+				throw new IndexOutOfRangeException(ex.Message);
+			}
 		}
 
 		/// <summary>

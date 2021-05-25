@@ -78,7 +78,14 @@ namespace College_GeneratorAccounts.Services
 		public static string GenerateEmails(string fullName)
 		{
 			string[] fullNameArray = fullName.Split();
-			return $"{fullNameArray[0]}.{fullNameArray[1]}@moodle.edu";
+			try
+			{
+				return $"{fullNameArray[0]}.{fullNameArray[1]}@moodle.edu";
+			}
+			catch (IndexOutOfRangeException)
+			{
+				throw new IndexOutOfRangeException("Не верный формат файла");
+			}
 		}
 
 		/// <summary>
@@ -89,7 +96,14 @@ namespace College_GeneratorAccounts.Services
 		public static string GenerateLogin(string nameLatin)
 		{
 			string[] nameLatinArray = nameLatin.Split();
-			return $"{nameLatinArray[0]}_{nameLatinArray[1]}";
+			try
+			{
+				return $"{nameLatinArray[0]}_{nameLatinArray[1]}";
+			}
+			catch (IndexOutOfRangeException)
+			{
+				throw new IndexOutOfRangeException("Не верный формат файла");
+			}
 		}
 
 		/// <summary>
