@@ -50,7 +50,7 @@ namespace College_GeneratorAccounts.Services
 		/// <param name="stream"></param>
 		private static void ExportCsv(IEnumerable<Account> data, StreamWriter stream)
 		{
-			stream.WriteLine("login;password;email;name;lname;cohort");
+			stream.WriteLine("username;password;firstname;lastname;email;cohort1");
 			foreach (Account account in data)
 			{
 				stream.Write(account.ToStringCsv());

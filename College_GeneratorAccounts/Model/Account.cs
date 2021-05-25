@@ -39,7 +39,7 @@ namespace College_GeneratorAccounts.Services
 		/// Возвращает строку, представляющую текущий объект для csv
 		/// </summary>
 		/// <returns> Cтроку, представляющую текущий объект для csv</returns>
-		public string ToStringCsv() => $"{Login};{Password};{Email};{Name};{LastName};{Group}\n";
+		public string ToStringCsv() => $"{Login};{Password};{Name};{LastName};{Email};{Group}\n";
 
 		public override string ToString() => $"Login: {Login}\nPassword: {Password}\nEmail: {Email}\n";
 	}
