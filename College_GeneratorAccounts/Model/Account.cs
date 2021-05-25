@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace College_GeneratorAccounts.Model
+namespace College_GeneratorAccounts.Services
 {
 	public class Account
 	{

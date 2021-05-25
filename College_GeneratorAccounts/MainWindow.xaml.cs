@@ -1,4 +1,4 @@
-﻿using College_GeneratorAccounts.Model;
+﻿using College_GeneratorAccounts.Services;
 
 using MahApps.Metro.Controls;
 
@@ -77,7 +77,7 @@ namespace College_GeneratorAccounts
 			btSaveToDb.IsEnabled = true;
 		}
 
-		private void BtImport_Click(object sender, RoutedEventArgs e)
+		private async void BtImport_Click(object sender, RoutedEventArgs e)
 		{
 			tb.Text = string.Empty;
 			OpenFileDialog ofd = new()
@@ -91,7 +91,7 @@ namespace College_GeneratorAccounts
 				path = ofd.FileName;
 				try
 				{
-					data = ImportData.Import(ofd.FileName);
+					data = await ImportData.ImportAsync(ofd.FileName);
 				}
 				catch (System.IO.IOException ex)
 				{

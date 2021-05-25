@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace College_GeneratorAccounts.Model
+namespace College_GeneratorAccounts.Services
 {
 	/// <summary>
 	/// Экспорт данных

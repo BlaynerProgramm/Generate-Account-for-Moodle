@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
-namespace College_GeneratorAccounts.Model
+namespace College_GeneratorAccounts.Services
 {
 	/// <summary>
 	/// Импорт данных
@@ -18,16 +19,16 @@ namespace College_GeneratorAccounts.Model
 		/// </summary>
 		/// <param name="path">Полный путь к файлу данных</param>
 		/// <returns></returns>
-		public static string[] Import(string path)
+		public async static Task<string[]> ImportAsync(string path)
 		{
 			if (path.EndsWith(".csv"))
 			{
-				return ImportCsv(path);
+				return await Task.Run(() => ImportCsv(path));
 			}
 
 			else
 			{
-				return ImportSheet(path, out _);
+				return await Task.Run(() => ImportSheet(path, out _));
 			}
 		}
 

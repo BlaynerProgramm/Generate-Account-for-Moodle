@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace College_GeneratorAccounts.Model
+namespace College_GeneratorAccounts.Services
 {
 	/// <summary>
 	/// Генератор аккаунтов
