@@ -1,4 +1,5 @@
 ﻿using College_GeneratorAccounts.Services;
+using College_GeneratorAccounts.Model;
 
 using MahApps.Metro.Controls;
 
@@ -19,11 +20,7 @@ namespace College_GeneratorAccounts
 		/// <summary>
 		/// Коллекция готовых аккаунтов
 		/// </summary>
-		private readonly List<Account> accounts = new();
-		/// <summary>
-		/// Сохраненный путь для перелистывания страниц
-		/// </summary>
-		private string path;
+		private readonly List<Account> accounts = new(); 
 		/// <summary>
 		/// Счётчик страниц
 		/// </summary>
@@ -35,6 +32,10 @@ namespace College_GeneratorAccounts
 		///  Событие перелистования страниц в таблице
 		/// </summary>
 		private event Operation TurnThePage;
+		/// <summary>
+		/// Электронная таблица
+		/// </summary>
+		private Worksheet worksheet;
 		#endregion
 
 		public MainWindow()
@@ -47,13 +48,13 @@ namespace College_GeneratorAccounts
 		{
 			try
 			{
-				data = ImportData.ImportSheet(path, out int count, i);
+				data = worksheet.GetSheet(i);
 				tb.Text = string.Empty;
 				for (int j = 0; j < data.Length; j++)
 				{
 					tb.Text += $"{data[j]}\n";
 				}
-				lbPages.Content = $"{i} из {count}";
+				lbPages.Content = $"{i} из {worksheet.Count}";
 			}
 			catch (System.Runtime.InteropServices.COMException ex)
 			{
@@ -70,7 +71,7 @@ namespace College_GeneratorAccounts
 					accounts.Add(Account.GetnerateAccount(data[i]));
 				}
 				tb.Text = string.Empty;
-				foreach (Account account in accounts)
+				foreach(var account in accounts)
 				{
 					tb.Text += account;
 				}
@@ -95,10 +96,18 @@ namespace College_GeneratorAccounts
 
 			if (ofd.ShowDialog().Value)
 			{
-				path = ofd.FileName;
 				try
 				{
-					data = await ImportData.ImportAsync(ofd.FileName);
+					if (ofd.FileName.EndsWith(".csv"))
+					{
+						data = await ImportData.ImportCsvAsync(ofd.FileName);
+					}
+					else
+					{
+						worksheet = new(ofd.FileName);
+						data = await worksheet.GetSheetAsync();
+						btGenerateAccountForAll.Visibility = Visibility.Visible;
+					}	
 				}
 				catch (System.IO.IOException ex)
 				{
@@ -128,7 +137,10 @@ namespace College_GeneratorAccounts
 			{
 				ExportData.Export(accounts, sfd.FileName);
 				MessageBox.Show("Успешное сохранение", "Экспорт", MessageBoxButton.OK, MessageBoxImage.Information);
-				accounts.Clear();
+				lbPages.Content = string.Empty;
+				worksheet.Dispose();
+				tb.Text = string.Empty;
+				i = 1;
 			}
 			else
 			{
@@ -149,5 +161,16 @@ namespace College_GeneratorAccounts
 		private void BtBack_Click(object sender, RoutedEventArgs e) => TurnThePage?.Invoke(--i);
 
 		private void BtNext_Click(object sender, RoutedEventArgs e) => TurnThePage?.Invoke(++i);
+
+		private void BtGenerateAccountForAll_Click(object sender, RoutedEventArgs e)
+		{
+			BtGenerateAccount_Click(sender, e); // Вызываем генерацию у первой страницы
+			for (int j = 0; j < worksheet.Count - 1; j++)
+			{
+				TurnThePage?.Invoke(++i);
+				BtGenerateAccount_Click(sender, e);
+			}
+			MessageBox.Show("Можно экспортировать", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+		}
 	}
 }

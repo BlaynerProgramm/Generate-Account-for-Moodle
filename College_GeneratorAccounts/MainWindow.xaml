@@ -44,10 +44,11 @@
 		<StackPanel Orientation="Vertical" Grid.Column="1" Grid.RowSpan="2">
 			<Button x:Name="btImport" Content="Импорт" Click="BtImport_Click" FontFamily="Times New Roman" FontSize="16" Margin="20,20,20,20" Width="400" Height="40" />
 			<Button x:Name="btGenerateAccount" IsEnabled="False" Content="Генерация" Click="BtGenerateAccount_Click" FontFamily="Times New Roman" FontSize="16" Margin="20,20,20,20" Width="400" Height="40" />
+			<Button x:Name="btGenerateAccountForAll" Content="Сгенерировать для всех листов" Visibility="Collapsed" Click="BtGenerateAccountForAll_Click" FontFamily="Times New Roman" FontSize="16" Margin="20,20,20,20" Width="400" Height="40"/>
 			<Button x:Name="btExport" Content="Экспорт" IsEnabled ="False" Click="BtExport_Click" FontFamily="Times New Roman" FontSize="16" Margin="20,20,20,20" Width="400" Height="40" />
 			<Button x:Name="btSaveToDb" Content="Сохранить в базу данных" IsEnabled ="False" Click="BtSaveToDb_Click" FontFamily="Times New Roman" FontSize="16" Margin="20,20,20,20" Width="400" Height="40" />
 		</StackPanel>
-		
+
 		<StackPanel Orientation="Vertical" HorizontalAlignment ="Center" Grid.Row="1" Grid.Column="1">
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 				<Button Style="{StaticResource MahApps.Styles.Button.Square.Accent}" x:Name="btBack" Content="&lt;&lt;" Click="BtBack_Click" Width="150"/>

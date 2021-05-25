@@ -49,6 +49,6 @@ namespace College_GeneratorAccounts.Services
 		/// <returns> Cтроку, представляющую текущий объект для csv</returns>
 		public string ToStringCsv() => $"{Login};{Password};{Name};{LastName};{Email};{Group}\n";
 
-		public override string ToString() => $"Login: {Login}\nPassword: {Password}\nEmail: {Email}\n";
+		public override string ToString() => $"LastName: {LastName}\n Name: {Name}\nLogin: {Login}\nPassword: {Password}\nEmail: {Email}\nGroup: {Group}\n";
 	}
 }
