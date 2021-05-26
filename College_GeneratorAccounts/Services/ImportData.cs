@@ -1,10 +1,6 @@
-﻿using Microsoft.Office.Interop.Excel;
-
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace College_GeneratorAccounts.Services
@@ -19,7 +15,7 @@ namespace College_GeneratorAccounts.Services
 		/// </summary>
 		/// <param name="path"></param>
 		/// <returns></returns>
-		public async static Task<string[]> ImportCsvAsync(string path) => await Task.Run(() => ImportCsv(path));
+		public static async Task<string[]> ImportCsvAsync(string path) => await Task.Run(() => ImportCsv(path));
 
 		/// <summary>
 		/// Импорт из csv

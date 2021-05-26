@@ -2,6 +2,8 @@
 using System.IO;
 using System.Xml.Serialization;
 
+using College_GeneratorAccounts.Model;
+
 namespace College_GeneratorAccounts.Services
 {
 	/// <summary>
