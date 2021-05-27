@@ -46,7 +46,7 @@
 		<StackPanel Orientation="Vertical" Grid.Column="1" Grid.RowSpan="2">
 			<Button x:Name="btImport" Content="Импорт" Click="BtImport_Click" FontFamily="Times New Roman" FontSize="16" Margin="20,20,20,20" Width="400" Height="40" ToolTip="Импорт файлов"/>
 			<Button x:Name="btGenerateAccount" IsEnabled="False" Content="Генерация" Click="BtGenerateAccount_Click" FontFamily="Times New Roman" FontSize="16" Margin="20,20,20,20" Width="400" Height="40" ToolTip="Сгенерировать аккаунты для исходных данных"/>
-			<Button x:Name="btGenerateAccountForAll" Content="Сгенерировать для всех листов" Visibility="Collapsed" Click="BtGenerateAccountForAll_Click" FontFamily="Times New Roman" FontSize="16" Margin="20,20,20,20" Width="400" Height="40" ToolTip="Выполнить генерацию для всех листов таблицы"/>
+			<Button x:Name="btGenerateAccountForAll" Content="С генерировать для всех листов" Visibility="Collapsed" Click="BtGenerateAccountForAll_Click" FontFamily="Times New Roman" FontSize="16" Margin="20,20,20,20" Width="400" Height="40" ToolTip="Выполнить генерацию для всех листов таблицы"/>
 			<Button x:Name="btExport" Content="Экспорт" IsEnabled ="False" Click="BtExport_Click" FontFamily="Times New Roman" FontSize="16" Margin="20,20,20,20" Width="400" Height="40" ToolTip="Экспортировать данные"/>
 			<Button x:Name="btSaveToDb" Content="Сохранить в базу данных" IsEnabled ="False" Click="BtSaveToDb_Click" FontFamily="Times New Roman" FontSize="16" Margin="20,20,20,20" Width="400" Height="40" ToolTip="Сохранить в базу данных"/>
 		</StackPanel>

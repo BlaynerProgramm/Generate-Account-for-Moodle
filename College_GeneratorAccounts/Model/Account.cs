@@ -6,23 +6,23 @@ namespace College_GeneratorAccounts.Model
 {
 	public class Account
 	{
-		public string Login { get; init; }
+		public string Username { get; init; }
 		public string Email { get; init; }
 		public string Password { get; init; }
-		public string Name { get; init; }
+		public string Firstname { get; init; }
 		public string LastName { get; init; }
-		public string Group { get; init; }
+		public string Cohort1 { get; init; }
 
 		public Account() { }
 
 		public Account(string login, string email, string password, string name, string lastName, string group)
 		{
-			Login = login ?? throw new ArgumentNullException(nameof(login));
+			Username = login ?? throw new ArgumentNullException(nameof(login));
 			Email = email ?? throw new ArgumentNullException(nameof(email));
 			Password = password ?? throw new ArgumentNullException(nameof(password));
-			Name = name ?? throw new ArgumentNullException(nameof(name));
+			Firstname = name ?? throw new ArgumentNullException(nameof(name));
 			LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
-			Group = group ?? throw new ArgumentNullException(nameof(group));
+			Cohort1 = group ?? throw new ArgumentNullException(nameof(group));
 		}
 
 		/// <summary>
@@ -49,8 +49,8 @@ namespace College_GeneratorAccounts.Model
 		/// Возвращает строку, представляющую текущий объект для csv
 		/// </summary>
 		/// <returns> Cтроку, представляющую текущий объект для csv</returns>
-		public string ToStringCsv() => $"{Login};{Password};{Name};{LastName};{Email};{Group}\n";
+		public string ToStringCsv() => $"{Username};{Password};{Firstname};{LastName};{Email};{Cohort1}\n";
 
-		public override string ToString() => $"LastName: {LastName}\n Name: {Name}\nLogin: {Login}\nPassword: {Password}\nEmail: {Email}\nGroup: {Group}\n";
+		public override string ToString() => $"LastName: {LastName}\n Name: {Firstname}\nLogin: {Username}\nPassword: {Password}\nEmail: {Email}\nGroup: {Cohort1}\n";
 	}
 }
