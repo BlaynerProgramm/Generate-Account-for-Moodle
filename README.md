@@ -22,4 +22,4 @@ Generate-Account-for-Moodle предоставляется по лицензии
 ### Доп. информация
 В проекте использовалась тема - [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
 
-Скачать программу можно по этой [ссылке](https://drive.google.com/file/d/1C8KQ_tnKTULSZGnBehSEYwNGdtDIi8BD/view?usp=sharing)
+Скачать программу можно по этой [ссылке](https://drive.google.com/file/d/1Ct0sy0hiEocPAQFc6Z9W0PafsVBq4X2z/view?usp=sharing)
