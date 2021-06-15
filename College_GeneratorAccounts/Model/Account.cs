@@ -6,6 +6,7 @@ namespace College_GeneratorAccounts.Model
 {
 	public class Account
 	{
+		public Guid Id { get; set; }
 		public string Username { get; init; }
 		public string Email { get; init; }
 		public string Password { get; init; }
@@ -13,6 +14,9 @@ namespace College_GeneratorAccounts.Model
 		public string LastName { get; init; }
 		public string Cohort1 { get; init; }
 
+		/// <summary>
+		/// Для сериализации в xml
+		/// </summary>
 		public Account() { }
 
 		public Account(string login, string email, string password, string name, string lastName, string group)
@@ -29,15 +33,17 @@ namespace College_GeneratorAccounts.Model
 		/// Сгенерировать аккаунт
 		/// </summary>
 		/// <param name="info">Полное имя</param>
+		/// <param name="fileName">Путь к файлу</param>
 		/// <returns>Аккаунт</returns>
-		public static Account GetnerateAccount(string info)
+		public static Account GetnerateAccount(string info, string fileName)
 		{
-
 			string[] infoArray = info.Replace("  ", " ").Split();
 			string nameToLatin = Generator.GetCollectionTranslitToLatin(info).Replace("  ", " ");
+			string year = fileName.Split('_')[2].Remove(0,2);
 			try
 			{
-				return new Account(Generator.GenerateLogin(nameToLatin), Generator.GenerateEmails(nameToLatin), Generator.GeneratePassword(), infoArray[1], infoArray[0], infoArray[3]);
+				var login = Generator.GenerateLogin(nameToLatin, year);
+				return new Account(login, Generator.GenerateEmails(login), $"{Generator.GeneratePassword()}#", infoArray[1], infoArray[0], $"{infoArray[3].Replace('_','-')}({year})");
 			}
 			catch (IndexOutOfRangeException ex)
 			{
@@ -51,6 +57,6 @@ namespace College_GeneratorAccounts.Model
 		/// <returns> Cтроку, представляющую текущий объект для csv</returns>
 		public string ToStringCsv() => $"{Username};{Password};{Firstname};{LastName};{Email};{Cohort1}\n";
 
-		public override string ToString() => $"LastName: {LastName}\n Name: {Firstname}\nLogin: {Username}\nPassword: {Password}\nEmail: {Email}\nGroup: {Cohort1}\n";
+		public override string ToString() => $"LastName: {LastName}\nName: {Firstname}\nLogin: {Username}\nPassword: {Password}\nEmail: {Email}\nGroup: {Cohort1}\n";
 	}
 }

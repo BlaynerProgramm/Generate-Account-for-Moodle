@@ -25,6 +25,7 @@ namespace College_GeneratorAccounts
 		/// Счётчик страниц
 		/// </summary>
 		private int i = 1;
+		private string fileName;
 
 		private delegate void Operation(int page);
 
@@ -68,7 +69,7 @@ namespace College_GeneratorAccounts
 			{
 				for (int i = 0; i < data.Length; i++)
 				{
-					accounts.Add(Account.GetnerateAccount(data[i]));
+					accounts.Add(Account.GetnerateAccount(data[i], fileName));
 				}
 				tb.Text = string.Empty;
 				foreach(var account in accounts)
@@ -93,7 +94,7 @@ namespace College_GeneratorAccounts
 				Filter = "csv(*.csv)|*.csv|xls(*.xls)|*.xls|xlsx(*.xlsx)|*.xlsx",
 				Title = "Выбрать файл данных"
 			};
-
+			
 			if (ofd.ShowDialog().Value)
 			{
 				try
@@ -104,12 +105,17 @@ namespace College_GeneratorAccounts
 					}
 					else
 					{
+						fileName = ofd.FileName;
 						worksheet = new(ofd.FileName);
 						data = await worksheet.GetSheetAsync();
 						btGenerateAccountForAll.Visibility = Visibility.Visible;
 					}	
 				}
 				catch (System.IO.IOException ex)
+				{
+					MessageBox.Show(ex.Message);
+				}
+				catch (System.Runtime.InteropServices.COMException ex)
 				{
 					MessageBox.Show(ex.Message);
 				}
@@ -150,7 +156,9 @@ namespace College_GeneratorAccounts
 
 		private void BtSaveToDb_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBox.Show("В разработке", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+			Windows.SaveToDbWindow window = new(accounts.ToArray());
+			window.ShowDialog();
+			window.Close();
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)

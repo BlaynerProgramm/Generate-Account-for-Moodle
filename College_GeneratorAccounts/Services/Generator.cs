@@ -73,32 +73,21 @@ namespace College_GeneratorAccounts.Services
 		/// <summary>
 		/// Генерация почты
 		/// </summary>
-		/// <param name="fullName">Полное имя на латинице</param>
+		/// <param name="login"></param>
 		/// <returns>Почта</returns>
-		public static string GenerateEmails(string fullName)
-		{
-			string[] fullNameArray = fullName.Split();
-			try
-			{
-				return $"{fullNameArray[0]}.{fullNameArray[1]}@moodle.edu";
-			}
-			catch (IndexOutOfRangeException)
-			{
-				throw new IndexOutOfRangeException("Не верный формат файла");
-			}
-		}
+		public static string GenerateEmails(string login) => $"{login}@spo-ket.ru";
 
 		/// <summary>
 		/// Генерация логина
 		/// </summary>
 		/// <param name="nameLatin">Полное имя на латинском</param>
 		/// <returns>Логин</returns>
-		public static string GenerateLogin(string nameLatin)
+		public static string GenerateLogin(string nameLatin, string year)
 		{
 			string[] nameLatinArray = nameLatin.Split();
 			try
 			{
-				return $"{nameLatinArray[0]}_{nameLatinArray[1]}";
+				return $"{nameLatinArray[0][0]}.{nameLatinArray[1]}.et-{year}";
 			}
 			catch (IndexOutOfRangeException)
 			{

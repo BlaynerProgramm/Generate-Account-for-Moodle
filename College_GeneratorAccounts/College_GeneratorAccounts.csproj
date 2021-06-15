@@ -40,6 +40,16 @@
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.4.5" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.8.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>

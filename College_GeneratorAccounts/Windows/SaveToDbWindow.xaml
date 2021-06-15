@@ -1,0 +1,33 @@
+﻿<Window x:Class="College_GeneratorAccounts.Windows.SaveToDbWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:College_GeneratorAccounts.Windows"
+        mc:Ignorable="d"
+        Title="Сохранение в бд" Height="300" Width="545">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="163*"/>
+			<ColumnDefinition Width="479*"/>
+			<ColumnDefinition Width="158*"/>
+		</Grid.ColumnDefinitions>
+
+		<StackPanel Orientation="Vertical" Grid.Column="1">
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Ip:"/>
+				<TextBox x:Name="tbIp" Width="266"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Логин (если есть)"/>
+				<TextBox x:Name="tbUserId" Width="183"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Парроль (если есть)"/>
+				<TextBox x:Name="tbPassword" Width="169"/>
+			</StackPanel>
+			<Button x:Name="btSave" Content="Сохранить" Click="BtSave_Click"/>
+		</StackPanel>
+
+	</Grid>
+</Window>
